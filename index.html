@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی سکسی 💦🫦- Royal Poker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a235a);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+            pointer-events: none;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 400px;
+            z-index: 10;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #ff9a9e, #fbc2eb, #a6c1ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: rgba(30, 30, 40, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: slideUp 1s ease;
+        }
+        
+        .features {
+            margin-bottom: 30px;
+        }
+        
+        .features h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #fbc2eb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .features h2 i {
+            margin-left: 10px;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+        
+        .feature-item:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-item i {
+            color: #a6c1ee;
+            margin-left: 10px;
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            flex: 1;
+            margin: 0 5px;
+        }
+        
+        .stat:first-child {
+            margin-right: 10px;
+        }
+        
+        .stat:last-child {
+            margin-left: 10px;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff9a9e;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, #ff9a9e, #fbc2eb);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(251, 194, 235, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(251, 194, 235, 0.6);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
+        .download-btn i {
+            margin-left: 8px;
+        }
+        
+        .cards-preview {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            perspective: 1000px;
+        }
+        
+        .card-preview {
+            width: 70px;
+            height: 100px;
+            background: #fff;
+            border-radius: 8px;
+            margin: 0 -15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateY(20deg);
+            transition: transform 0.5s;
+        }
+        
+        .card-preview:nth-child(1) {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            transform: rotate(-5deg) translateY(10px);
+            z-index: 3;
+        }
+        
+        .card-preview:nth-child(2) {
+            background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+            transform: rotate(2deg) translateY(-5px);
+            z-index: 2;
+        }
+        
+        .card-preview:nth-child(3) {
+            background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+            transform: rotate(8deg) translateY(8px);
+            z-index: 1;
+        }
+        
+        .card-preview::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            animation: fadeIn 2s ease;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 154, 158, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 154, 158, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 154, 158, 0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+            
+            .stat {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <img src="https://gameccxkd.freehost.io/animation.gif" alt="بازی سکسی 💦🫦">
+            </div>
+            <h1 class="title">بازی سکسی 💦🫦</h1>
+            <p class="subtitle">تجربه‌ای متفاوت از بازی سکسی با گرافیک بالا</p>
+        </div>
+        
+        <div class="card">
+            <div class="features">
+                <h2><i class="fas fa-star"></i>ویژگی‌های برتر</h2>
+                <ul class="feature-list">
+                    <li class="feature-item">
+                        <i class="fas fa-check-circle"></i>گرافیک فوق‌العاده با کیفیت HD
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check-circle"></i>انیمیشن‌های روان و جذاب
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check-circle"></i>صداگذاری حرفه‌ای و محیطی
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check-circle"></i>سیستم چند نفره آنلاین
+                    </li>
+                    <li class="feature-item">
+                        <i class="fas fa-check-circle"></i>امکان بازی با دوستان
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">۴.۸</div>
+                    <div class="stat-label">امتیاز کاربران</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">۵۰۰K+</div>
+                    <div class="stat-label">دانلود</div>
+                </div>
+            </div>
+            
+            <a href="app.apk" class="download-btn">
+                <i class="fas fa-download"></i>دانلود بازی 
+            </a>
+            
+            <div class="cards-preview">
+                <div class="card-preview">A</div>
+                <div class="card-preview">K</div>
+                <div class="card-preview">Q</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 بازی سکسی 💦🫦 - تمامی حقوق محفوظ است</p>
+        </div>
+    </div>
+    
+    <script>
+        // Simple animation for cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card-preview');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transition = 'transform 0.5s ease';
+                    card.style.transform = 'rotate(0) translateY(0)';
+                }, index * 200 + 500);
+            });
+            
+            // Button hover effect
+            const button = document.querySelector('.download-btn');
+            button.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                this.style.setProperty('--x', x + 'px');
+                this.style.setProperty('--y', y + 'px');
+            });
+        });
+    </script>
+</body>
+</html>
